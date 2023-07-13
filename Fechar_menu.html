@@ -1,0 +1,110 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+            #container{
+                width: 250px;
+                height:auto;
+                border: 2px solid #000;
+                border-radius: 25px;
+                display: flex;
+                position: relative;
+                align-items:center;
+                flex-direction: column;
+                text-align:center;
+            }
+            #container div{
+                margin-bottom: 20px;
+            }
+            #container p{
+                position: relative;
+                top: -36px;
+                border: 2px solid #000;
+                border-end-end-radius: 20px;
+                border-end-start-radius: 20px;
+                width: 90%;
+                display: none;
+            }
+            .numeros{
+                width: 90%;
+                height: 30px;
+                border: 2px solid blue;
+                background-color: blue;
+                border-radius: 20px;  
+                
+            }
+            .letras{
+                width: 90%;
+                height: 30px;
+                border: 2px solid red;
+                background-color: red;
+                border-radius: 20px;
+            }
+            .letrasMaius{
+                width: 90%;
+                height: 30px;
+                border: 2px solid green;
+                background-color: green;
+                border-radius: 20px;
+            }
+
+        </style>
+</head>
+<body>
+    <div id="container">
+        <div onclick="clickMenu(texto1, texto2, texto3, numeros, letrasMaius, letras)" id="numeros" class="numeros">
+        </div>
+        <p id="texto1" style="display: none;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Sed malesuada purus quis rutrum efficitur. Vivamus ac odio accumsan, lobortis purus vitae, maximus velit.
+             Praesent vel risus sed ipsum efficitur faucibus id vel justo. Maecenas a lectus eu ligula maximus mollis at id quam.
+              Pellentesque quis tristique dolor. Integer molestie luctus nisi dignissim fermentum.
+               Phasellus a lorem sed lectus feugiat posuere. Vivamus et enim mi. Sed eu sapien nisi.
+                Donec dapibus vulputate nibh eget porta. Duis id mi elit. Morbi eget tortor molestie, cursus elit eget, rhoncus mauris.
+                 Nam rhoncus, metus sit amet venenatis lobortis, sapien diam mollis libero,
+                  eu facilisis.</p>
+        <div onclick="clickMenu(texto2, texto1, texto3, letras, numeros, letrasMaius)" id="letras" class="letras"></div>
+        <p id="texto2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Sed malesuada purus quis rutrum efficitur. Vivamus ac odio accumsan, lobortis purus vitae, maximus velit.
+             Praesent vel risus sed ipsum efficitur faucibus id vel justo. Maecenas a lectus eu ligula maximus mollis at id quam.
+              Pellentesque quis tristique dolor. Integer molestie luctus nisi dignissim fermentum.
+               Phasellus a lorem sed lectus feugiat posuere. Vivamus et enim mi. Sed eu sapien nisi.
+                Donec dapibus vulputate nibh eget porta. Duis id mi elit. Morbi eget tortor molestie, cursus elit eget, rhoncus mauris.
+                 Nam rhoncus, metus sit amet venenatis lobortis, sapien diam mollis libero,
+                  eu facilisis.</p>
+        <div onclick="clickMenu(texto3, texto2, texto1, letrasMaius, numeros, letras)" id="letrasMaius" class="letrasMaius"></div>
+        <p id="texto3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            Sed malesuada purus quis rutrum efficitur. Vivamus ac odio accumsan, lobortis purus vitae, maximus velit.
+             Praesent vel risus sed ipsum efficitur faucibus id vel justo. Maecenas a lectus eu ligula maximus mollis at id quam.
+              Pellentesque quis tristique dolor. Integer molestie luctus nisi dignissim fermentum.
+               Phasellus a lorem sed lectus feugiat posuere. Vivamus et enim mi. Sed eu sapien nisi.
+                Donec dapibus vulputate nibh eget porta. Duis id mi elit. Morbi eget tortor molestie, cursus elit eget, rhoncus mauris.
+                 Nam rhoncus, metus sit amet venenatis lobortis, sapien diam mollis libero,
+                  eu facilisis.</p>
+    </div>
+    <script>
+    function clickMenu(p1, p2, p3, borda1, borda2, borda3){
+
+        if(p1.style.display === 'none'){
+            p1.style.display = 'block';
+            p2.style.display = 'none';
+            p3.style.display = 'none';
+
+
+            borda1.style.borderEndEndRadius = '1px'
+            borda1.style.borderEndStartRadius = '1px'
+            borda2.style.borderRadius = '20px';
+            borda3.style.borderRadius = '20px';
+
+            
+        }
+        else{
+           p1.style.display = 'none';
+            borda1.style.borderRadius = '20px';
+        }
+    }
+</script>
+</body>
+</html>
+

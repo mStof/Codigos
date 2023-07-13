@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+           
+        <title>Lovezim.</title>
+            <style type="text/css">
+                @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Indie+Flower&display=swap');
+                /*Não pode aparecer em um quadrado de 27Alt e 48Larg Max: x:59, y:-130. Min: X:-107, Y:45*/
+                :root{
+                    --x-position: 40px;
+                    --y-position: 0px; 
+                }
+                body{
+                    background-color: #E84A52;
+                    color: #fafafa; 
+                    display: flex;
+                    align-items: center;
+                }
+                .texto{
+                    font-size:70px;
+                    padding-bottom: 15px;
+                    font-family: Caveat, 'Indie Flower', cursive;
+                    width: auto;
+                    
+                }
+                .layout{
+                    border: solid 3px #E84A52;
+                    width: auto;
+                    height: 200px;
+                    margin-top: 15%;
+                    margin-left: 42%;
+                    border: 1px dashed #000;
+                }
+                button{
+                    border: solid 1px #000;
+                    border-radius: 4px;
+                    background-color: #fafafa;
+                    color: #000;
+                    width: 70px;
+                    height: 40px;
+                    position:relative;
+                }
+                a{
+                    text-decoration: none;
+                    color:#000
+                }
+                .botoes{
+                    border: solid 4px #E84A52;
+                    width: 144px;
+                    margin-left: 15%;
+                }
+                button:hover{
+                    background-color: #dfdfdf;
+                }
+                #button{
+                    left: var(--x-position);
+                    top: var(--y-position);
+                }
+            </style>
+    </head>
+ <body>
+    <div class="layout">
+        <div class="texto">Beijinho hj?</div>
+        <div class="botoes"> 
+        <a href="https://www.youtube.com/watch?v=DPgUtK7nkio&pp=ygUJbG92ZXppbmhv"><button>Yep!!</button></a>
+            <button id="button">Nop :p</button>
+        </div>
+    </div>
+    <p id="x"></p>
+    <p id="y"></p>
+    <p id="xOrig"></p>
+    <p id="yOrig"></p>
+   
+    <script>
+
+        var button = document.getElementById('button');
+            //Min x,y = -350, -250
+            //Max x,y = 350, 250
+            button.addEventListener('pointerover', () => {
+                var x = Math.random()* (350 - (-350)) + (-350);
+                var y = Math.random()* (250 - (-250)) + (-250);
+                //document.getElementById('xOrig').innerHTML = 'XOrig:' + x;
+                //document.getElementById('yOrig').innerHTML = 'YOrig:' + y;
+                console.log("OrigX:" + x);
+                console.log("OrigY:" + y);
+                    if(x >= -107 && x <= 59 && y <= 45 && y >= -130){
+                        var x = Math.random()* 59;
+                        var y = Math.random()* 250;
+
+                            document.documentElement.style.setProperty('--x-position', x)
+                            document.documentElement.style.setProperty('--y-position', y)
+
+
+                    }else{
+                document.documentElement.style.setProperty('--x-position', x)
+                document.documentElement.style.setProperty('--y-position', y)
+                    }
+                    console.log("X:"+x, "Y:"+y);
+                //document.getElementById('x').innerHTML = 'X:' + x;
+                //document.getElementById('y').innerHTML = 'Y:' + y;
+            })
+    </script>
+ </body>
+</html>

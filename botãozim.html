@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Botãozim</title>
+            <style type="text/css">
+                body{
+                    font-family:Arial, Helvetica, sans-serif;
+                    background-color: var(--background-color);
+                    color: var(--text-color);
+                }
+                :root{
+                    --x-position: 697.5px;
+                    --y-position: 315.5px;
+                    --background-color: #101010;
+                    --text-color: #fff;
+                    --hover: #bfbfbf;
+                }
+                #button{
+                    width: 100px;
+                    height: 50px;
+                    font-size: 20px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    position: absolute;
+                    left: var(--x-position);
+                    top: var(--y-position);
+                    background-color: #fff;
+                    border: solid 1px #000;
+                    border-radius: 3px; 
+                }
+                #button a{
+                    text-decoration: none;
+                    color: #000;
+                    width: 100px;
+                }
+                #mode{
+                    position: absolute;
+                    margin-left: 20px;
+                    border: solid 1px #000;
+                    border-radius: 3px;
+                    background-color: var(--text-color);
+                    color: var(--background-color);
+                    font-size: 15px;
+                }
+                #mode:hover{
+                    background-color: var(--hover);
+
+                }
+                p, h2{
+                    margin-top: 20px;
+                }
+                .box{
+                    border: solid 3px #000;
+                    border-radius: 3px;
+                    display: block;
+                    height: 400px;
+                    width: 550px;
+                    margin-top: 20px;
+                    background-color:#fafafa;
+                }
+            </style>
+    </head>
+ <body>
+        <button id="mode">Light mode</button>
+    <center>
+        <h2>Clique no botão</h2>
+            <p>Esse é um teste <b>SIMPLES</b> para testar seus reflexos</p>
+            A única coisa que você tem que fazer é clicar no botão.
+                <div class="box">
+                    <button id="button"><a href="https://www.youtube.com/watch?v=2dc_B7Ap4pk">Click Here!</a></button>
+                </div>
+            <p id="x"></p>
+            <p id="y"></p>
+    </center>
+        <script>
+            var button = document.getElementById('button');
+            var mode = document.getElementById('mode');
+            //Min x,y = 472, 140
+            //Max inside x,y = 451, 351 
+            //Max x,y = 923, 491.5
+            button.addEventListener('pointerover', () => {
+                var x = Math.random()*451 +472;
+                var y = Math.random()*351.5 +140;
+            
+                document.documentElement.style.setProperty('--x-position', x)
+                document.documentElement.style.setProperty('--y-position', y)
+
+                document.getElementById('x').innerHTML = 'X:' + (x-472);
+                document.getElementById('y').innerHTML = 'Y:' + (y-140);
+            })
+
+            mode.addEventListener('click', () => {
+                if(mode.textContent === 'Light mode') {
+                    document.documentElement.style.setProperty('--background-color', '#fafafa')
+                    document.documentElement.style.setProperty('--text-color', '#000')
+                    document.documentElement.style.setProperty('--hover', '#404040')
+                    mode.textContent = 'Dark mode'
+                }
+                else {
+                    document.documentElement.style.setProperty('--background-color', '#101010')
+                    document.documentElement.style.setProperty('--text-color', '#fff')
+                    document.documentElement.style.setProperty('--hover', '#bfbfbf')
+                    mode.textContent = 'Light mode'
+                }
+            })
+        </script>
+ </body>
+</html>
