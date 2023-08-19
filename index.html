@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <title>Central dos códigos</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      div#btn:has(input:checked) > div.dropdown-menu {
+        display: block;
+      }
+      div#btn2:has(#checkbox2:checked) > div.dropdown-menu {
+        display: block;
+      }
+      input {
+        display: none;
+      }
+      .btn-group{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="width: 600px">
+      <div class="row justify-content-center">
+        <h1>Meus Sites de jogos/codigos</h1>
+      </div>
+      <div class="row justify-content-around">
+        <label for="checkbox" style="width: 162.71px">
+          <div id="btn" class="btn-group justify-content-center">
+            <input type="checkbox" name="checkbox" id="checkbox" />
+            <div style="border-radius: 10px;" class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Codigos mutaveis
+            </div>
+            <div style="border-radius: 10px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="Codigos mutaveis/Fechar_menu.html">
+                Fechar_menu
+              </a>
+              <a class="dropdown-item" href="Codigos mutaveis/teste select.html">
+                Teste_select
+              </a>
+              <a class="dropdown-item" href="Codigos mutaveis/Sidebar_lateral.html">
+                Sidebar_lateral
+              </a>
+            </div>
+          </div>
+        </label>
+        <label for="checkbox2" style="width: 162.71px">
+          <div id="btn2" class="btn-group">
+            <input type="checkbox" name="checkbox" id="checkbox2" />
+            <div style="border-radius: 10px; width: 100%;" class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Joguinhos
+            </div>
+            <div style="border-radius: 10px;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="Jogos/Lovezim.html">Lovezim</a>
+              <a class="dropdown-item" href="Jogos/gamezinho.html">Gamezinho</a>
+              <a class="dropdown-item" href="Jogos/botãozim.html">Botãozim</a>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+  </body>
+</html>
