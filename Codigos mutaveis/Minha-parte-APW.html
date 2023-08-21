@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');   
+        *{padding: 0;margin: 0;}
+
+        :root{
+            --yellow: rgb(255, 255, 126);
+            --purple: plum;
+            --background: blue;
+            --height: calc(100vh - 75px - 100px);
+        }
+
+        header{
+            width: 100vw;
+             height: var(--height); /* altura - altura do NAV - altura do FOOTER */
+            background: linear-gradient(
+            to right,
+            var(--yellow) 0%,
+            var(--yellow) 50%,
+            var(--purple) 50%,
+            var(--purple) 100%
+            );
+            display: flex;
+            color: #222;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 75px;
+
+        }
+
+        header .compras{
+            width: 50%;
+            height: 100%;
+            background-color: var(--yellow);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            transition: 1.5s;
+        }
+        header .doacoes{
+            width: 50%;
+            height: 100%;
+            background-color: var(--purple);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            transition: 1.5s;
+        }
+        /* Bola amarela*/
+        header .compras::before{
+            content: ' ';
+            height: calc(var(--height) / 2);
+            width: calc(var(--height) / 2);
+            background-color: var(--purple);
+            z-index: 2;
+            border-radius: 100%;
+
+            position: absolute;
+            left: calc(100% - calc(calc(var(--height) / 2) / 2));
+            align-self: flex-end;
+
+            transition-property: background-color;
+            transition-duration:.5s;
+        }
+        /* Bola roxa */
+        header .doacoes::before{
+            content: ' ';
+            height: calc(var(--height) / 2);
+            width: calc(var(--height) / 2);
+            background-color: var(--yellow);
+            border-radius: 100%;
+
+            position:absolute;
+            align-self: flex-start;
+            left: calc(0% - calc(calc(var(--height) / 2) / 2));
+            transition-property: background-color;
+            transition-duration:.5s ;
+
+        }
+
+
+        header div.compras label , header div.doacoes label{
+            width: auto;
+            padding: 5px 20px;
+            background-color: lightsalmon;
+            border-radius: 10px;
+
+            text-align: center;
+            font-size: 4.5vmin;
+
+            cursor: pointer;
+            box-shadow: 0px 0px 20px 1px .00000040;
+            user-select: none;
+            transition-duration: 1.5s, .2s, .2s;
+            transition-property: all, transform, scale;
+        }
+        header label span.return{
+            font-size: 2rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            position: fixed;
+            left: -20px;
+            top: calc(75px + 10px);
+            z-index: 9;
+            user-select:none;
+            
+            cursor: pointer;
+            transition: 400ms;
+        }
+
+        header .compras label:hover, header .doacoes label:hover{
+            transition: 0.2s;
+            transform: translateY(-10px);
+        }
+        header .compras label:active, header .doacoes label:active{
+            scale: 0.95;
+        }
+        input[type="radio"]{
+            display: none;
+        }
+
+        /* Animação do ".compras" */
+        header:has(input[value='compras']:checked) .doacoes{
+            transform:translateX(100%);    
+        }
+        header:has(input[value='compras']:checked) .compras{
+            transform: translateX(calc(100% - 1px));
+        }
+        /* Opacity dos botões */
+        header:has(input[value='compras']:checked) .compras label, header:has(input[value='doacoes']:checked) .doacoes label{
+            opacity: 0;
+        }
+        /* O circulo (Roxo) */
+        header:has(input[value='compras']:checked) .compras::before{
+            background-color: var(--yellow);
+            transition-delay: 1s;
+        }
+
+        body:has(input[value='doacoes']:checked, input[value='compras']:checked){overflow-x: hidden}
+        /* Animação do ".doacoes" */
+        header:has(input[value='doacoes']:checked) .compras{
+            transform: translateX(-100%);
+        }
+        header:has(input[value='doacoes']:checked) .doacoes{
+            transform: translateX(-100%);
+        }
+        /* O botão de voltar */
+        header:has(input[value='doacoes']:checked, input[value='compras']:checked) label span.return{
+            transform: translateX(40px);
+        }
+        /* O circulo (Amarelo) */
+        header:has(input[value='doacoes']:checked) .doacoes::before{
+            background-color: var(--purple);
+            transition-delay: 1s;
+        }
+        header:has(input[value='null']:checked){
+            background-color: var(--yellow);
+        }
+
+
+        nav{
+            background-color: lightgray;
+            height: 75px;
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+        }
+        nav ul{
+            display: flex;
+            gap: 100px;
+            list-style: none;   
+            margin-left: 50px
+        }
+        nav ul li a{
+            font-size: 2rem;
+            text-decoration: none;
+            color: #222;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        main{
+            width: 100vw;
+            height: 0vh;
+            
+            background-color: var(--yellow);
+            transition: 1.5s;
+        }
+        header:has(input[value='compras']:checked) ~ main{
+            height: 100vh;
+        }
+
+        footer{
+            width: 100vw;
+            height: 100px;
+            background-color: lightgray;
+        }
+
+       
+
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Help</a></li>
+            <li><a href="">lição</a></li>
+            <li><a href="">Lorem</a></li>
+        </ul>
+    </nav>
+    <header>
+        <input type="radio" name="escolha" id="null" value="null">
+
+        <label for="null"><span class="return">X</span></label>
+        <div class="compras">
+            <label for="Btn-compra" style="background-color: var(--purple);"> 
+                <div class="botao">Compras</div>
+            </label>
+
+            <input type="radio" name="escolha" id="Btn-compra" value="compras">
+        </div>
+            <div class="doacoes">
+            
+                <label for="Btn-doacoes" style="background-color: var(--yellow);">
+                    <div class="botao">Doações</div>
+                </label>
+            
+                <input type="radio" name="escolha" id="Btn-doacoes" value="doacoes">
+            </div>
+    </header>
+    <main>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+
+</body>
+
+</html>
