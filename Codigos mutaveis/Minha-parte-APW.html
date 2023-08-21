@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
-
+<!-- Media query: 40vh -->
+<!-- Original: calc(75vh - 75px),   -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');   
         *{padding: 0;margin: 0;}
@@ -18,12 +19,12 @@
             --yellow: rgb(255, 255, 126);
             --purple: plum;
             --background: blue;
-            --height: calc(100vh - 75px - 100px);
+            --height: calc(75vh - 75px); /* altura - altura do NAV */
         }
 
         header{
             width: 100vw;
-             height: var(--height); /* altura - altura do NAV - altura do FOOTER */
+             height: var(--height); 
             background: linear-gradient(
             to right,
             var(--yellow) 0%,
@@ -63,16 +64,17 @@
             transition: 1.5s;
         }
         /* Bola amarela*/
-        header .compras::before{
+        header .compras::before, header .doacoes::before{
+            --width: calc((var(--height) / 2) - 0px);
             content: ' ';
             height: calc(var(--height) / 2);
-            width: calc(var(--height) / 2);
+            width: calc(var(--width));
             background-color: var(--purple);
             z-index: 2;
             border-radius: 100%;
 
             position: absolute;
-            left: calc(100% - calc(calc(var(--height) / 2) / 2));
+            left: calc(100% - (var(--width) / 2));
             align-self: flex-end;
 
             transition-property: background-color;
@@ -80,26 +82,18 @@
         }
         /* Bola roxa */
         header .doacoes::before{
-            content: ' ';
-            height: calc(var(--height) / 2);
-            width: calc(var(--height) / 2);
             background-color: var(--yellow);
-            border-radius: 100%;
-
-            position:absolute;
             align-self: flex-start;
-            left: calc(0% - calc(calc(var(--height) / 2) / 2));
-            transition-property: background-color;
-            transition-duration:.5s ;
-
+            left: calc(0% - (var(--width) / 2));
         }
 
 
         header div.compras label , header div.doacoes label{
             width: auto;
             padding: 5px 20px;
-            background-color: lightsalmon;
+            background-color: #fff;
             border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
             text-align: center;
             font-size: 4.5vmin;
@@ -136,6 +130,12 @@
         }
 
         /* Animação do ".compras" */
+        :root:has(input[value='compras']:checked){
+            --background: var(--yellow)
+        }
+        :root:has(input[value='doacoes']:checked){
+            --background: var(--purple)
+        }
         header:has(input[value='compras']:checked) .doacoes{
             transform:translateX(100%);    
         }
@@ -160,17 +160,17 @@
         header:has(input[value='doacoes']:checked) .doacoes{
             transform: translateX(-100%);
         }
-        /* O botão de voltar */
-        header:has(input[value='doacoes']:checked, input[value='compras']:checked) label span.return{
-            transform: translateX(40px);
-        }
         /* O circulo (Amarelo) */
         header:has(input[value='doacoes']:checked) .doacoes::before{
             background-color: var(--purple);
             transition-delay: 1s;
         }
         header:has(input[value='null']:checked){
-            background-color: var(--yellow);
+            background-color: var(--background);
+        }
+        /* O botão de voltar */
+        header:has(input[value='doacoes']:checked, input[value='compras']:checked) label span.return{
+            transform: translateX(40px);
         }
 
 
@@ -204,14 +204,34 @@
             background-color: var(--yellow);
             transition: 1.5s;
         }
-        header:has(input[value='compras']:checked) ~ main{
-            height: 100vh;
+        div.detalhes{
+            display: flex;
+            justify-content: space-around;
         }
-
-        footer{
-            width: 100vw;
-            height: 100px;
-            background-color: lightgray;
+        div.detalhes div.gotas{
+            position: relative;
+            z-index: -2;
+            width: 75px;
+            max-height: 0px;
+            border-radius: 0px 0px 100px 100px;
+            background-color: var(--background);
+            transition-property: background-color, max-height;
+            transition-duration: 0s, 2s;
+            transition-delay: 0s, 0s;
+        }
+        header:has(input[value='null']:checked) ~ div.detalhes div.gotas{
+            transition-property: background-color, max-height;
+            transition-duration: 0s, 2s;
+            transition-delay: 2s, 0s;
+            background-color: #222;
+        }
+        header:has(input[value='compras']:checked) ~ div.detalhes div.gotas{
+            --bacground: var(--yellow);
+            max-height: 200px;
+        }
+        header:has(input[value='doacoes']:checked) ~ div.detalhes div.gotas{
+            --background: var(--purple);
+            max-height: 200px;
         }
 
        
@@ -233,7 +253,7 @@
 
         <label for="null"><span class="return">X</span></label>
         <div class="compras">
-            <label for="Btn-compra" style="background-color: var(--purple);"> 
+            <label for="Btn-compra"> 
                 <div class="botao">Compras</div>
             </label>
 
@@ -241,21 +261,25 @@
         </div>
             <div class="doacoes">
             
-                <label for="Btn-doacoes" style="background-color: var(--yellow);">
+                <label for="Btn-doacoes">
                     <div class="botao">Doações</div>
                 </label>
             
                 <input type="radio" name="escolha" id="Btn-doacoes" value="doacoes">
             </div>
     </header>
+    <div class="detalhes">
+        <div class="gotas" style="height: 200px;"></div>
+        <div class="gotas" style="height: 100px;"></div>
+        <div class="gotas" style="height: 175px;"></div>
+        <div class="gotas" style="height: 120px;"></div>
+        <div class="gotas" style="height: 150px;"></div>
+        <div class="gotas" style="height: 80px;"></div>
+        
+    </div>
     <main>
 
     </main>
-
-    <footer>
-
-    </footer>
-
 
 
 </body>
