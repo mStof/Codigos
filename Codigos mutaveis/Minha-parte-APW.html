@@ -108,7 +108,7 @@
             font-size: 2rem;
             font-family: 'Nunito', sans-serif;
             font-weight: 600;
-            position: fixed;
+            position: absolute;
             left: -20px;
             top: calc(75px + 10px);
             z-index: 9;
@@ -183,12 +183,17 @@
             z-index: 10;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
         }
         nav ul{
             display: flex;
-            gap: 100px;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 100px;
+            gap: 20px;
             list-style: none;   
-            margin-left: 50px
+            
+            
         }
         nav ul li a{
             font-size: 2rem;
@@ -208,9 +213,11 @@
             display: flex;
             justify-content: space-around;
         }
-        div.detalhes div.gotas{
+        div.detalhes div.gotas,
+        div.detalhes::after, 
+        div.detalhes::before{
             position: relative;
-            z-index: -2;
+            z-index:-2 ;
             width: 75px;
             max-height: 0px;
             border-radius: 0px 0px 100px 100px;
@@ -218,18 +225,28 @@
             transition-property: background-color, max-height;
             transition-duration: 0s, 2s;
             transition-delay: 0s, 0s;
+            content: ' ';
         }
-        header:has(input[value='null']:checked) ~ div.detalhes div.gotas{
+        div.detalhes::after{height: 100px;} 
+        div.detalhes::before{height: 175px;}
+ 
+        header:has(input[value='null']:checked) ~ div.detalhes div.gotas, 
+        header:has(input[value='null']:checked) ~ div.detalhes::after,
+        header:has(input[value='null']:checked) ~ div.detalhes::before{
             transition-property: background-color, max-height;
             transition-duration: 0s, 2s;
             transition-delay: 2s, 0s;
             background-color: #222;
         }
-        header:has(input[value='compras']:checked) ~ div.detalhes div.gotas{
-            --bacground: var(--yellow);
+        header:has(input[value='compras']:checked) ~ div.detalhes div.gotas, 
+        header:has(input[value='compras']:checked) ~ div.detalhes::after, 
+        header:has(input[value='compras']:checked) ~ div.detalhes::before{
+            --bakcground: var(--yellow);
             max-height: 200px;
         }
-        header:has(input[value='doacoes']:checked) ~ div.detalhes div.gotas{
+        header:has(input[value='doacoes']:checked) ~ div.detalhes div.gotas, 
+        header:has(input[value='doacoes']:checked) ~ div.detalhes::after, 
+        header:has(input[value='doacoes']:checked) ~ div.detalhes::before{
             --background: var(--purple);
             max-height: 200px;
         }
@@ -237,6 +254,7 @@
        
 
     </style>
+    <link rel="stylesheet" type="text/css" href="css/media-query.css">
 
 </head>
 
@@ -271,10 +289,10 @@
     <div class="detalhes">
         <div class="gotas" style="height: 200px;"></div>
         <div class="gotas" style="height: 100px;"></div>
-        <div class="gotas" style="height: 175px;"></div>
-        <div class="gotas" style="height: 120px;"></div>
-        <div class="gotas" style="height: 150px;"></div>
-        <div class="gotas" style="height: 80px;"></div>
+        <div class="gotas" style="height: 175px;"></div> 
+        <div id="invisible" class="gotas" style="height: 120px;"></div> 
+        <div id="invisible" class="gotas" style="height: 150px;"></div>
+        <div id="invisible" class="gotas" style="height: 80px;"></div>  
         
     </div>
     <main>

@@ -1,0 +1,22 @@
+/* Media query */
+@media (max-width: 500px){
+    :root{
+        --height: calc(50vh - 75px); /* altura - altura do NAV */
+
+    }
+    header div.compras label{
+        margin-right: 50px;
+    }
+    
+    header div.doacoes label{
+        margin-left: 50px;
+    }
+    div.detalhes div.gotas,
+        div.detalhes::after, 
+        div.detalhes::before{
+            width: 40px;
+    }
+    #invisible{
+        display: none;
+    }
+}
