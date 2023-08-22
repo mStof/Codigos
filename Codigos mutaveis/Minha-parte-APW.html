@@ -224,7 +224,7 @@
             background-color: var(--background);
             transition-property: background-color, max-height;
             transition-duration: 0s, 2s;
-            transition-delay: 0s, 0s;
+            transition-delay: 0s, 1s;
             content: ' ';
         }
         div.detalhes::after{height: 100px;} 
@@ -234,7 +234,7 @@
         header:has(input[value='null']:checked) ~ div.detalhes::after,
         header:has(input[value='null']:checked) ~ div.detalhes::before{
             transition-property: background-color, max-height;
-            transition-duration: 0s, 2s;
+            transition-duration: 0s, 1.5s;
             transition-delay: 2s, 0s;
             background-color: #222;
         }
