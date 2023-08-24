@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        
+        body{
+            display: flex;
+            height: 97vh;
+            margin: 10px;
+            gap: 20px;
+        }
+        div.container{
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #000;
+        }
+        /* Coração */
+        div.container div{
+            --border: 100px;
+            width: 50px;
+            height: 80px;
+            background-color: red;
+            rotate: -45deg;
+            border-radius: var(--border) var(--border) 0px 0px;
+            translate: 30.5%;
+
+        }
+       div.container div:last-child{
+            rotate: 45deg;
+            position: relative;
+            translate: -25%;
+            border-radius: var(--border) var(--border) 0px 0px;
+            color: transparent
+        }
+        /* Fim do coração */
+            
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="container"></div>
+</body>
+</html>
