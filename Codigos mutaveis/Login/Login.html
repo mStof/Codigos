@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+          
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(25deg, rgba(66,72,255,1) 0%, rgba(66,72,255,1) 50%, rgba(150,90,195,1) 50%, rgba(150,90,195,1) 100%);
+        font-family:'Courier New', Courier, monospace;
+      }
+      form fieldset label{
+        display: none;
+      }
+
+      form fieldset{
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        
+        margin: 0px;
+        padding: 20px 5px;
+        width:250px;
+        box-shadow: 0px 0px 10px 2px #00000050;
+        background-color: #eee;
+
+
+      }
+      form fieldset input{
+        margin: 5px;
+        width: 80%;
+        border: 2px solid #000 ;
+        border-radius:5px ;
+        padding: 3px;
+        font-size: 1rem;
+    }
+    form fieldset img{
+        width: 150px;
+        height: 150px;
+        margin: 17px 0px;
+        border-radius: 50%;
+    }
+    h1{
+        letter-spacing: 5px;
+        margin: 0px;
+        border-bottom: 3px solid #000;
+    }
+    div{
+        background-color: #eee;
+        box-shadow: 0px 0px 10px 2px #00000050;
+        transition: .5s;
+
+
+
+    }
+    div.profile{
+        width: 200px;
+        height: 80px;
+        background-color: #eee;
+        box-shadow: 0px 0px 10px 2px #00000050;
+        position: relative;
+        left: calc(50% + 30px);
+        top:-370px;
+        translate: -50%;
+        transition: translate .5s ease 0s;
+        z-index: -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+    div.profile ~  div{
+        background: url(Profile.svg);
+        background-position: center;
+        background-size: 35px;
+        background-repeat: no-repeat;
+        background-color: #eee;
+        cursor: pointer;
+        width:50px;
+        height: 50px;
+        position: relative;
+        top:-450px;
+        left:calc(100% - 2px); 
+        border-radius: 0px 5px 5px 0px;
+        box-shadow: 0px 0px 10px 2px #00000050;
+        z-index: 2;
+    }
+    div.profile input{
+        display: none;
+    }
+    div.profile p{
+        margin: 0;
+    }
+    div.profile label{
+        width: 50%;
+        height: 15px;
+        background-color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.9rem;
+        padding: 5px;
+        border: 2px solid #000;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    </style>
+  </head>
+  <body>
+    <form action="" method="get">
+        <fieldset>
+            <h1>Sign up</h1>
+            <img src="Perfil.svg" alt="Your_image">
+    
+            <label for="Nome">Nome:</label>
+            <input style="margin-top: 0px;" type="text" id="Nome" placeholder="Nome:">
+    
+            <label for="Senha">Senha:</label>
+            <input type="password" id="Senha" placeholder="Senha:">
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Email:">
+            <input type="submit" name="Submit" id="Submit">
+        </fieldset>
+        <div class="profile">
+            <p> Chose your photo:</p>
+            <label for="file">Your image</label>
+            <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png">
+        </div>
+        <div onclick="mover(this)"></div>
+    </form>
+    <script>
+        const form = document.querySelector('form');
+        const file = document.querySelector('input[type="file"]')
+        let togle = 1
+        form.addEventListener('submit', () => {
+            var person = {
+                Foto: document.querySelector('img').src,
+                Name: document.getElementById('Nome').value,
+                Password: document.getElementById('Senha').value,
+                Email: document.getElementById('email').value
+            }
+            console.log(person)
+        });
+
+        function mover(btn){
+            let profile = document.querySelector('.profile')
+            if(togle === 1){
+            btn.style.left = `calc(${100}% + ${198}px)`;
+
+            profile.style.translate = `${50}%`
+            profile.style.zIndex = 1
+
+            profile.style.transitionProperty = 'z-index, translate'
+            profile.style.transitionDuration = `${0}s, ${.5}s`
+            profile.style.transitionDelay = `${.5}s, ${0}s`
+
+            togle = 0
+        }
+        else{
+            btn.style.left = `calc(${100}% - ${2}px)`;
+
+            profile.style.translate = `${-50}%`
+            profile.style.zIndex = -1
+
+            profile.style.transition= `translate .5s ease 0s`;
+
+            togle = 1
+            }
+        }
+
+        file.addEventListener('change', (e) =>{
+            let perfil = document.querySelector('img');
+            perfil.src = URL.createObjectURL(e.target.files[0]);
+        })
+    </script>
+  </body>
+</html>
