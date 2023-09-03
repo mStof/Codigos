@@ -1,5 +1,5 @@
 /* Media query */
-@media (max-width: 500px){
+ @media (max-width: 500px){
     :root{
         --height: calc(50vh - 75px); /* altura - altura do NAV */
 
