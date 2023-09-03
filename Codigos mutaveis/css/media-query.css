@@ -4,6 +4,9 @@
         --height: calc(50vh - 75px); /* altura - altura do NAV */
 
     }
+    header{
+        height: 500px;
+    }
     header div.compras label{
         margin-right: 50px;
     }
@@ -15,6 +18,10 @@
         div.detalhes::after, 
         div.detalhes::before{
             width: 40px;
+    }
+    header div.compras div.conteudo article{
+        top:75px;
+
     }
     #invisible{
         display: none;

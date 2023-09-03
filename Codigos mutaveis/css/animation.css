@@ -1,0 +1,88 @@
+/* Animação dos botões */
+header .compras label:hover, header .doacoes label:hover{
+    transition: 0.2s;
+    transform: translateY(-10px);
+}
+header .compras label:active, header .doacoes label:active{
+    scale: 0.95;
+}
+input[type="radio"]{
+    display: none;
+}
+
+ /* Animação do ".compras" */
+ :root:has(input[value='compras']:checked){
+    --background: var(--yellow)
+}
+:root:has(input[value='doacoes']:checked){
+    --background: var(--purple)
+}
+header:has(input[value='compras']:checked) .doacoes{
+    transform:translateX(100%);    
+}
+header:has(input[value='compras']:checked) .compras{
+    transform: translateX(calc(100% - 1px));
+}
+/* Opacity dos botões */
+header:has(input[value='compras']:checked) .compras label, header:has(input[value='doacoes']:checked) .doacoes label{
+    opacity: 0;
+}
+/* O circulo (Roxo) */
+header:has(input[value='compras']:checked) .compras::before{
+    background-color: var(--yellow);
+    transition-delay: 1s;
+}
+body:has(input[value='doacoes']:checked, input[value='compras']:checked){overflow-x: hidden}
+
+/* Animação do ".doacoes" */
+header:has(input[value='doacoes']:checked) .compras{
+    transform: translateX(-100%);
+}
+header:has(input[value='doacoes']:checked) .doacoes{
+    transform: translateX(-100%);
+}
+/* O circulo (Amarelo) */
+header:has(input[value='doacoes']:checked) .doacoes::before{
+    background-color: var(--purple);
+    transition-delay: 1s;
+}
+header:has(input[value='null']:checked){
+    background-color: var(--background);
+}
+
+/* O botão de voltar */
+header:has(input[value='doacoes']:checked, input[value='compras']:checked) label span.return{
+    transform: translateX(40px);
+}
+
+header:has(input[value='compras']:checked) div.compras div.conteudo{
+    max-width: 100vw;
+}
+header:has(input[value='compras']:checked) div.compras div.conteudo{
+    transition: 2.5s;
+    opacity: 1;
+}
+
+/* Animação das gotas */
+header:has(input[value='null']:checked) ~ div.detalhes div.gotas, 
+header:has(input[value='null']:checked) ~ div.detalhes::after,
+header:has(input[value='null']:checked) ~ div.detalhes::before{
+    transition-property: background-color, max-height;
+    transition-duration: 0s, 1.5s;
+    transition-delay: 2s, 0s;
+    background-color: #222;
+    }
+
+header:has(input[value='compras']:checked) ~ div.detalhes div.gotas, 
+header:has(input[value='compras']:checked) ~ div.detalhes::after, 
+header:has(input[value='compras']:checked) ~ div.detalhes::before{
+    --bakcground: var(--yellow);
+    max-height: 200px;
+    }
+
+header:has(input[value='doacoes']:checked) ~ div.detalhes div.gotas, 
+header:has(input[value='doacoes']:checked) ~ div.detalhes::after, 
+header:has(input[value='doacoes']:checked) ~ div.detalhes::before{
+    --background: var(--purple);
+    max-height: 200px;
+}
