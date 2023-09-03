@@ -316,6 +316,9 @@
         header div.doacoes div.conteudo article + div::before{
             background-color: rgb(255, 211, 218);
         }
+        header:has(input[value='compras']:checked) div.doacoes div.conteudo{
+            display: none;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/animation.css">
     <link rel="stylesheet" type="text/css" href="css/media-query.css">
