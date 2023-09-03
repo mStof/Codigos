@@ -39,7 +39,7 @@
 
         }
 
-        header .compras{
+        header .compras, header .doacoes{
             width: 50%;
             height: 100%;
             background-color: var(--yellow);
@@ -52,16 +52,8 @@
             transition: 1.5s;
         }
         header .doacoes{
-            width: 50%;
-            height: 100%;
             background-color: var(--purple);
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-
-            transition: 1.5s;
         }
         /* Bola amarela*/
         header .compras::before, header .doacoes::before{
@@ -97,7 +89,7 @@
 
             text-align: center;
             font-size: 4.5vmin;
-
+            z-index: 11;
             cursor: pointer;
             box-shadow: 0px 0px 20px 1px .00000040;
             user-select: none;
@@ -174,23 +166,23 @@
         div.detalhes::after{height: 100px;} 
         div.detalhes::before{height: 175px;}
 
-        header div.compras div.conteudo{
+        header * div.conteudo{
             width: 100vw;
             height: auto;
             opacity: 0;
             position: absolute;
             left: -100%;
             z-index: 10;
+            max-width: inherit;
             display: flex;
             justify-content: space-around;
-            max-width: 0;
             flex-wrap: wrap;
-            background-color: #00ff0030;
+            transition: 1.5s;
         }
-        header div.compras div.conteudo article{
+        header * div.conteudo article{
             width: 200px;
             height: 220px;
-            background-color: #F5F883;
+            background-color: #eee;
             border: 1px solid #000;
             box-shadow: 2px 10px 10px 3px #00000050;
             padding: 10px;
@@ -199,15 +191,17 @@
             justify-content: space-evenly;
             align-items: center;
             flex-direction: column;
-
         }
-        header div.compras div.conteudo article > p{
+        header * div.conteudo article:nth-child(2){
+            margin-bottom: 100px;
+        }
+        header * div.conteudo article > p{
             text-align:center;
             font-size: 1.4rem;
             color: #333;
            
         }
-        header div.compras div.conteudo article > p + div {
+        header * div.conteudo article > p + div {
             width: 175px;
             height:50px;
             border-radius:180px;
@@ -216,7 +210,7 @@
             line-height:12px;
         }
 
-        header div.compras div.conteudo article > p + div::before {
+        header * div.conteudo article > p + div::before {
             content:'';
             z-index:1;
             position:absolute;
@@ -231,14 +225,14 @@
             background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
         }
 
-        header div.compras div.conteudo article > p + div:hover::before {
+        header * div.conteudo article > p + div:hover::before {
             opacity:1;
             transition: 0.3s opacity ease-in-out;
             filter:blur(25px);
             background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);  
         }
 
-        header div.compras div.conteudo article > p + div::after {
+        header * div.conteudo article > p + div::after {
             content:'Compradores';
             text-align:center;
             line-height:40px;
@@ -252,56 +246,55 @@
             height:80%;
             top:10%;
             left:4%;  
-            background-color:var(--yellow);
+            background-color:#eee;
             transition: .5s;
-
         }
-        header div.compras div.conteudo article > p + div:hover::after{
+        header * div.conteudo article > p + div:hover::after,
+        header div.doacoes div.conteudo article > p + div:hover::after{
             background-color: #22222280;
             color: #eee;
         }
         #content_2::after{
             content: 'Fidelidade';
         }
+     
         #content_3::after{
             content: 'Contribuições';
         }
-        header div.compras div.conteudo article + div{
+        header * div.conteudo article + div{
             position: absolute;
             align-self: flex-end;
             background-color: var(--purple);
             
             border-radius: 180px;
-            
             padding: 10px 20px;
-            margin-bottom: 70px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: .7s;
         }
-        header div.compras div.conteudo article + div > a{
+        header * div.conteudo article + div > a{
             text-decoration: none;
             font-size: 2rem;
             color: #222;
             z-index: 2;
         }
-        header div.compras div.conteudo article + div:hover{
+        header * div.conteudo article + div:hover{
             animation: rodar .7s ease 0s normal;
             scale: 1.1;
         }
       
-        header div.compras div.conteudo article + div::before{
+        header * div.conteudo article + div::before{
             content: ' ';
-            width:      00%;
+            width: 00%;
             height: 00%;
             background-color: lightyellow;
             position: absolute;
             border-radius: 180px;
             transition: .7s;
         }
-        header div.compras div.conteudo article + div:hover::before{
+        header * div.conteudo article + div:hover::before{
             width: 100%;
             height: 100%;
         }
@@ -314,9 +307,19 @@
                 
             }
         }
+        header:has(input[value='doacoes']:checked) div.doacoes div.conteudo{
+            left: 0%;
+        }
+        header div.doacoes div.conteudo article + div{
+            background-color: var(--yellow);
+        }
+        header div.doacoes div.conteudo article + div::before{
+            background-color: rgb(255, 211, 218);
+        }
     </style>
-    <link rel="stylesheet" type="text/css" href="css/media-query.css">
     <link rel="stylesheet" type="text/css" href="css/animation.css">
+    <link rel="stylesheet" type="text/css" href="css/media-query.css">
+
 
 </head>
 
@@ -333,23 +336,23 @@
         <label for="null"><span class="return">X</span></label>
 
         <div class="compras">
-            <label for="Btn-compra" style="z-index: 11;"> 
+            <label for="Btn-compra"> 
                 <div class="botao">Compras</div>
             </label>
-            <input type="radio" name="escolha" id="Btn-compra" value="compras" checked>
+            <input type="radio" name="escolha" id="Btn-compra" value="compras">
 
             <div class="conteudo">
-                <article style="margin-top: 130px;">
+                <article>
                     <p>Nosso site tem em média mais de <strong>10.000 compras</strong> por dias</p>
                     <div></div>
                 </article>
 
-                <article style="margin-top: 20px;">
+                <article>
                     <p>Nossa loja tem diversos selos de <strong>clientes satisfeitos</strong></p>
                     <div id="content_2"></div>
                 </article>
 
-                <article style="margin-top: 100px;">
+                <article>
                     <p><strong>80% dos ganhos</strong> com nosso site seram distribuidos em doações</p>
                     <div id="content_3"></div>
                 </article>
@@ -362,6 +365,24 @@
                     <div class="botao">Doações</div>
                 </label>
                 <input type="radio" name="escolha" id="Btn-doacoes" value="doacoes">
+
+                <div class="conteudo">
+                    <article>
+                        <p>Nosso site tem em média mais de <strong>10.000 compras</strong> por dias</p>
+                        <div></div>
+                    </article>
+    
+                    <article>
+                        <p>Nossa loja tem diversos selos de <strong>clientes satisfeitos</strong></p>
+                        <div id="content_2"></div>
+                    </article>
+    
+                    <article>
+                        <p><strong>80% dos ganhos</strong> com nosso site seram distribuidos em doações</p>
+                        <div id="content_3"></div>
+                    </article>
+                    <div><a href="">Doar</a></div>
+                </div>
             </div>
     </header>
     <div class="detalhes">

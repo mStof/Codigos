@@ -55,12 +55,15 @@ header:has(input[value='doacoes']:checked, input[value='compras']:checked) label
     transform: translateX(40px);
 }
 
+
 header:has(input[value='compras']:checked) div.compras div.conteudo{
-    max-width: 100vw;
-}
-header:has(input[value='compras']:checked) div.compras div.conteudo{
-    transition: 2.5s;
     opacity: 1;
+    transition: 2.5s;
+}
+
+header:has(input[value='doacoes']:checked) div.doacoes div.conteudo{
+    opacity: 1;
+    transition: 2.5s;
 }
 
 /* Animação das gotas */

@@ -4,8 +4,8 @@
         --height: calc(50vh - 75px); /* altura - altura do NAV */
 
     }
-    header{
-        height: 500px;
+    header:has(*:checked:not(input[value='null'])){
+        height: 920px;
     }
     header div.compras label{
         margin-right: 50px;
@@ -19,9 +19,16 @@
         div.detalhes::before{
             width: 40px;
     }
-    header div.compras div.conteudo article{
-        top:75px;
+    header * div.conteudo{
+        gap: 20px;
+        flex-wrap: wrap-reverse;
 
+    }
+    header div.compras div.conteudo article{
+        margin-bottom: 0px;
+    }
+    header div.compras div.conteudo article:nth-child(3){
+        margin-top: 100px;
     }
     #invisible{
         display: none;
