@@ -24,11 +24,11 @@
         flex-wrap: wrap-reverse;
 
     }
-    header div.compras div.conteudo article{
-        margin-bottom: 0px;
+    header * div.conteudo article{
+        margin: 0px !important;
     }
-    header div.compras div.conteudo article:nth-child(3){
-        margin-top: 100px;
+    header * div.conteudo article:nth-child(3){
+        margin-top: 100px !important;
     }
     #invisible{
         display: none;
