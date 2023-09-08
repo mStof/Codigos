@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: grid;
+            place-items: center;
+            grid-template-rows: repeat(5, 1fr);
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1{
+            font-family: 'Courier New', Courier, monospace;
+            width: 33ch;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 33ch;
+            grid-row-start: 3;
+        }
+        .coracaoDir, .coracaoEsq{
+            width: 12.5px;
+            height: 25px;
+            background-color: red;
+            rotate: 45deg;
+            position: absolute;
+            top: calc(50% - 12.5px);
+            left: 1085px;
+            border-radius: 30px 30px 0px 0px;   
+            opacity: 1;
+            transition: opacity 0s 3s linear;
+        }
+        .coracaoEsq{
+            rotate: -45deg;
+            left: 1075px;
+        }
+        #piscar{
+            transition: opacity 0s 3s linear;
+        }
+
+      
+        h1.active{
+            animation: digitando 3s steps(33),
+            piscando .5s infinite step-end alternate;
+        }
+        @keyframes digitando {
+            from{
+                width: 0;
+            }
+        }
+        @keyframes piscando {
+            50%{
+                border-color: transparent;
+            }
+        }
+        div.btn{
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            position: relative;
+            grid-row-start: 4;
+
+        }
+        #esconder{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>I love You Julia Maranhão Barbosa</h1>
+    <div class="coracaoDir"></div>
+    <div class="coracaoEsq"></div>
+    <div class="btn" onclick="Aparecer(this)"></div>
+    
+    <script>
+        const botao = document.querySelector('.btn');
+        const h1 = document.querySelector('h1');
+        const coracaoEsq = document.getElementsByClassName('coracaoEsq')
+        const coracaoDir = document.getElementsByClassName('coracaoDir') 
+        function Aparecer(btn) {
+            btn.style.display = 0;
+            h1.style.borderRight = 10 + "px solid #000";
+            h1.style.maxWidth = `${33}ch`;
+            h1.classList.toggle('active');
+        }
+        console.log(coracaoDir)
+        console.log(coracaoEsq)
+
+    </script>
+</body>
+</html>

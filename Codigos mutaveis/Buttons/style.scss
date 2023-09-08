@@ -1,0 +1,215 @@
+div{
+    padding: .7rem 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    place-items: center;
+    
+    height: 100vh;
+    background-color: #111118;
+    color: #eee;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+div.button1{
+    /* Estilização da DIV (opicional)*/
+    --color: #313196;
+    color: var(--color);
+    border: 3px solid var(--color);
+    border-radius: .25rem; /* A borda tem que ser baixa */
+    display: inline-block;
+    user-select: none;
+    cursor: pointer;
+
+    /* Nescessario */
+    position: relative;
+    /* isolation: isolate; */
+    transition: color 500ms;   
+
+
+    &:hover{
+        color: #eee;
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        z-index: -1;
+        inset: 0; /* Prenche todo espaço da DIV */
+        background-color: var(--color);
+        transition: scale 500ms;
+        scale: 0 1; /* 0 == Eixo X // 1 == Eixo Y */
+        transform-origin: right; /* Coloca a ORIGEM do ::after na direita */
+    }
+
+    &:hover::after{
+        transform-origin: left; /* Coloca a ORIGEM do ::after na esquerda */
+        scale: 1 1;
+}
+}
+
+div.button2{
+    border: 3px solid #eee;
+    border-radius: 180px;
+    position: relative;
+    transition: 1.2s;
+    cursor: pointer;
+
+    &:before{
+        content: '';
+        inset: 0;
+        position: absolute;
+        border-radius: inherit;
+        z-index: -1;
+        background-color: #eee;
+        transition:scale 1.2s;
+        scale: 0;
+    }
+    &:hover::before{
+        scale: 1;
+    }
+    &:hover{
+        rotate: 360deg;
+        color: #111118;
+    }
+}
+
+div.button3{
+    background-color: #eee;
+    background-image: url(svg/Arrow_selector.svg);
+    background-size: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    padding: 1.2rem 1.2rem; 
+    transition: 500ms;   
+    width: 120px;
+    max-width: 0px;
+    
+
+    &:hover{
+        background-image: none;
+        transition: 500ms;
+        padding: .7rem 2rem;
+        max-width: 120px;
+        border-radius: 180px;
+    }
+    
+    &::before{
+        content: '';
+        opacity: 0;
+
+    }
+    &:hover::before{
+            content: 'Button3';
+            transition: 500ms 400ms;
+            opacity: 1;
+            display: grid;
+            place-items: center;
+            color: #111118;
+    }
+
+}
+
+div.button4{
+    border: 3px solid #fb9332;
+    border-radius: 10px;
+
+    &:hover{
+        animation: shake .8s ease-in-out;
+    }
+    @keyframes shake {
+        
+        10%{
+            rotate: 25deg;
+        }
+        20%{
+            rotate: -25deg;
+        }
+        30%{
+            rotate: 15deg;
+        }
+        40%{
+            rotate: -15deg;
+        }
+        50%{
+            rotate: 10deg;
+        }
+        60%{
+            rotate: -10deg;
+        }
+        70%{
+            rotate: 5deg;
+        }
+        80%{
+            rotate: -5deg;
+        }
+        90%{
+            rotate: 0deg;
+        }
+        100%{
+            rotate: -0deg;
+        }
+    }
+}
+
+div.button5{
+   background-color: hsl(0, 80%, 35%);
+   border-radius: 10px;
+   display: grid;
+   place-items: center;
+   position: relative;
+   isolation: isolate;
+   overflow: hidden;
+
+
+   & > span{
+        width: 33%;
+        height: 100%;
+        position: absolute;
+        // z-index: -1;
+        opacity: .5;
+   }
+   & > :first-child{
+    left: 0;
+   }
+   & > :last-child{
+    right: 0;
+   }
+   &::before{
+    content: ' ';
+    width: 10%;
+    ;
+    border-radius: 50%;
+    background-color: hsl(0, 80%, 55%);
+    position: absolute;
+    z-index: -1;
+    aspect-ratio: 1;
+    transition: scale 500ms 500ms, opacity 500ms;
+    opacity: 0;
+   }
+   &:hover:before{
+    opacity: 1;
+    scale: 20;
+    transition: scale 1000ms, opacity 500ms ;
+
+   }
+   &:has(:first-child:hover)::before{
+    place-self: center start;
+    transition: scale 500ms, opacity 500ms ;
+
+   }
+   &:has(:last-child:hover)::before{
+    place-self: center end;
+    transition: scale 500ms, opacity 500ms ;
+
+   }
+}
