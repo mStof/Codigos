@@ -1,0 +1,86 @@
+@font-face {
+    font-family:'Retro Gaming';
+    src: url(../../fonts/Retro\ Gaming.ttf);
+}
+@font-face {
+    font-family:'Digital Numbers';
+    src: url(../../fonts/DigitalNumbers-Regular.ttf);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-container{
+    width: 250px;
+    height: 75px;
+    background-color: #000;
+    border: 4px solid #404040;
+    border-radius: 1rem;
+    box-shadow: inset 0px 0px 8px 4px rgba(255, 51, 51, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 2rem;
+
+}
+.timer-container p {
+    font-size: 3rem;
+    font-family: 'Digital Numbers';
+    position: absolute;
+}
+.timer-container .hour-behind{
+    color: #404040;
+}
+.timer-container .hour-display{
+    color: #FF3333;
+}
+
+.genius{
+    width: 700px;
+    height: 400px;
+    background-color: #000;
+    border: 5px solid #000;
+    border-radius: 25px;
+    /* overflow: hidden; */
+    box-shadow: inset 0px 0px 0px 0px #000;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.genius div{
+    border: 1px solid #000;
+}
+.red{
+    background-color: #A11212;
+    border-radius: 20px 0 0 0;
+}
+.green{
+    background-color: #12A112;
+}
+.blue{
+    background-color: #1212A1;
+    border-radius: 0 20px 0 0;
+}
+.yellow{
+    background-color: #A1A112;
+    border-radius: 0 0 0 20px;    
+    }
+.cyan{
+    background-color: #12A1A1;
+    }
+.purple{
+    background-color: #A112A1;
+    border-radius: 0 0 20px 0;
+}
