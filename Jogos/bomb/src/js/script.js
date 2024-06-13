@@ -11,7 +11,7 @@ closeModalBtn.addEventListener("click", iniciar);
 function iniciar() {
   if (youWin) return location.reload();
   modalBg.style.display = "none";
-  let ganhos = 7;
+  let ganhos = 0;
   let sequence = 0;
   let resetPatern = false;
   let isEarlyGame = true
