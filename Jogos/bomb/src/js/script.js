@@ -6,10 +6,11 @@ const modalScreen = document.querySelector(".modal-screen");
 const closeModalBtn = document.querySelector(".modal-screen form button");
 const modalBg = document.querySelector(".modal");
 let youWin = false;
+let youLose = false;
 
 closeModalBtn.addEventListener("click", iniciar);
 function iniciar() {
-  if (youWin) return location.reload();
+  if (youWin || youLose) return location.reload();
   modalBg.style.display = "none";
   let ganhos = 0;
   let sequence = 0;
@@ -58,6 +59,7 @@ function iniciar() {
   };
 
   const lose = () => {
+    youLose = true;
     modalBg.style.display = "block";
     modalScreen.showModal();
     const img = modalScreen.querySelector("img");
@@ -113,9 +115,6 @@ function iniciar() {
     }
     chooseAPattern();
     for (let i = 0; i < patterActive.length; i++) await acendendo(i);
-    console.log("Pattern ativo", patterActive);
-    console.log("Ganhos", ganhos);
-    console.log("Sequencia", sequence);
     geniusContainer.addEventListener("click", handleClick);
   };
   startTimer(lose, win)
