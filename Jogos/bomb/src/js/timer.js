@@ -1,4 +1,4 @@
-const startTimer = (loseFunc) => {
+const startTimer = (loseFunc, winFunc) => {
   let timer = 60;
   const horaInicio = new Date().getTime();
   const horaExpirar = new Date(horaInicio + timer * 1000);
@@ -14,6 +14,10 @@ const startTimer = (loseFunc) => {
 
     if (segundosExpirar === 0) {
       loseFunc();
+      clearInterval(timeStarter);
+    }
+    if(youWin) {
+      winFunc();
       clearInterval(timeStarter);
     }
   }, 500);

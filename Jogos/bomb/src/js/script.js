@@ -4,12 +4,14 @@ const timerContainer = document.querySelector(".timer-container");
 const timerDisplay = document.querySelector(".hour-display");
 const modalScreen = document.querySelector(".modal-screen");
 const closeModalBtn = document.querySelector(".modal-screen form button");
-const modalBg = document.querySelector(".modal")
+const modalBg = document.querySelector(".modal");
+let youWin = false;
 
 closeModalBtn.addEventListener("click", iniciar);
 function iniciar() {
+  if (youWin) return location.reload();
   modalBg.style.display = "none";
-  let ganhos = 0;
+  let ganhos = 7;
   let sequence = 0;
   let resetPatern = false;
   let isEarlyGame = true
@@ -17,11 +19,12 @@ function iniciar() {
 
   const continus = () => {
     if (patterActive.length !== sequence + 1) {
-      const btnSound = new Audio("../../sounds/btn-sound.mp3");
+      const btnSound = new Audio("../sounds/btn-sound.mp3");
+      console.log(btnSound);
       btnSound.play();
       return sequence++;
     }
-    const correctSound = new Audio("../../sounds/correct-sound.mp3");
+    const correctSound = new Audio("../sounds/correct-sound.mp3");
     correctSound.play();
     ganhos++;
     sequence = 0;
@@ -31,8 +34,9 @@ function iniciar() {
   };
 
   const wrong = () => {
-    const wrongSound = new Audio("../../sounds/wrong-sound.mp3");
+    const wrongSound = new Audio("../sounds/wrong-sound.mp3");
     wrongSound.play();
+    geniusContainer.removeEventListener("click", handleClick);
     ganhos = 1;
     sequence = 0;
     resetPatern = true;
@@ -41,11 +45,16 @@ function iniciar() {
   };
 
   const win = () => {
+    youWin = true
+    modalBg.style.display = "block";
     modalScreen.showModal();
     const img = modalScreen.querySelector("img");
+    modalScreen.style.backgroundColor = '#BAE5AD'
+    img.src = '../imgs/win_img.jpg';
+
     const text = modalScreen.querySelector("p");
     text.innerHTML =
-      "Parabéns você desarmou a bomba, sinta-se orgulhoso soldado <3";
+      "Parabéns você desarmou a bomba e impediu uma catástrofe mundial, sinta-se orgulhoso soldado <3";
   };
 
   const lose = () => {
@@ -54,7 +63,7 @@ function iniciar() {
     const img = modalScreen.querySelector("img");
     const text = modalScreen.querySelector("p");
     modalScreen.style.backgroundColor = '#82ad77'
-    img.src = '../../imgs/lose_img.png';
+    img.src = '../imgs/lose_img.png';
     text.innerHTML =
       "Parabéns você morreu tentando desarmar uma bomba de nível iniciante, e condenou sua nação inteira, sinte-se orgulhoso, soldado.";
   };
@@ -81,8 +90,8 @@ function iniciar() {
           patterActive[i].style.backgroundColor = "#F425F4";
           break;
       }
-      setTimeout(() => (patterActive[i].style = ""), 1000);
-      setTimeout(() => resolve(), 1500);
+      setTimeout(() => (patterActive[i].style = ""), 500);
+      setTimeout(() => resolve(), 1000);
     });
   const patterActive = [];
   const chooseAPattern = () => {
@@ -109,6 +118,6 @@ function iniciar() {
     console.log("Sequencia", sequence);
     geniusContainer.addEventListener("click", handleClick);
   };
-  startTimer(lose)
+  startTimer(lose, win)
   startGame();
 }
